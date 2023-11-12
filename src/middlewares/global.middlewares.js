@@ -37,7 +37,7 @@ export const validUser = async (req, res, next) => {
 
 export const validPlanta = async (req, res, next) => {
     try {
-        const nomecientifico = req.params.nomecientifico
+        const { nomecientifico }  = req.body
 
         const planta = await findByNomeService(nomecientifico)
 
