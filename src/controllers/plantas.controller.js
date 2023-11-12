@@ -1,4 +1,4 @@
-import { createService, findAllService, findByNomeService, updateService } from '../services/plantas.service.js'
+import { createService, findAllService, updateService } from '../services/plantas.service.js'
 
 const create = async (req, res) => {
     try {
@@ -59,6 +59,7 @@ const findByNome = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        const tempnome = req.params.nomecientifico
         const { nome, nomecientifico, descricao, artigo } = req.body
 
         if (!nome && !nomecientifico && !descricao && !artigo) {
@@ -68,6 +69,7 @@ const update = async (req, res) => {
         await updateService(
             nome,
             nomecientifico,
+            tempnome,
             descricao,
             artigo
         )

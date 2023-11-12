@@ -10,10 +10,11 @@ const findByNomeService = (nomecientifico) => Plantas.findOne( { nomecientifico:
 const updateService = (
     nome,
     nomecientifico,
+    tempnome,
     descricao,
     artigo
 ) => Plantas.findOneAndUpdate (
-    { nomecientifico: nomecientifico },
+    { nomecientifico: tempnome },
     { nome, nomecientifico, descricao, artigo }
 )
 
