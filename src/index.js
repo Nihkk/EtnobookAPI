@@ -7,7 +7,6 @@ import userRoute from './routes/user.route.js'
 import authRoute from './routes/auth.route.js'
 import plantasRoute from './routes/plantas.route.js'
 
-
 dotenv.config()
 
 const app = express()
@@ -18,17 +17,11 @@ const app = express()
 
 //Rotas
     app.use(express.json())
+    app.use(cors())
 
-    app.use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', '*')
-    })
-    
     app.use('/user', userRoute)
     app.use('/auth', authRoute)
-    app.use('/plantas', plantasRoute)
-
-    
-    app.use(cors())
+    app.use('/plantas', plantasRoute)    
 
 //Função utilizada para abrir uma conexão com o cliente
 const port = process.env.PORT || 3000
