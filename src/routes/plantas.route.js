@@ -5,7 +5,7 @@ import { authMiddleware } from '../middlewares/auth.middleware.js'
 
 const router = Router()
 
-router.post('/', authMiddleware, create)
+router.post('/', create)
 router.get('/', findAll)
 router.get('/:nomecientifico', validPlanta, findByNome)
 router.patch('/:nomecientifico', validPlanta, update)
