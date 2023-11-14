@@ -2,7 +2,7 @@ import { createService, findAllService, updateService } from '../services/planta
 
 const create = async (req, res) => {
     try {
-        const { nome, nomecientifico, descricao, artigo } = req.body
+        const { nome, nomecientifico, descricao, artigo, imagem } = req.body
 
         if (!nome || !nomecientifico) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro" })
@@ -12,7 +12,8 @@ const create = async (req, res) => {
             nome,
             nomecientifico,
             descricao,
-            artigo
+            artigo,
+            imagem
         })
 
         if (!planta) {
@@ -25,7 +26,8 @@ const create = async (req, res) => {
             nome,
             nomecientifico,
             descricao,
-            artigo
+            artigo,
+            imagem
             },
         })
     } catch (err) {
@@ -38,7 +40,7 @@ const findAll = async (req, res) => {
         const plantas = await findAllService()
 
         if (plantas.length === 0) {
-            return res.status(400).send({ message: "Não há usuarios cadastrados" })
+            return res.status(400).send({ message: "Não há plantas cadastrados" })
         }
 
         res.send(plantas)
@@ -60,9 +62,9 @@ const findByNome = async (req, res) => {
 const update = async (req, res) => {
     try {
         const tempnome = req.params.nomecientifico
-        const { nome, nomecientifico, descricao, artigo } = req.body
+        const { nome, nomecientifico, descricao, artigo, imagem } = req.body
 
-        if (!nome && !nomecientifico && !descricao && !artigo) {
+        if (!nome && !nomecientifico && !descricao && !artigo && !imagem) {
             return res.status(400).send({ message: "Informe pelo menos um campo para atualização" })
         }
 
@@ -71,7 +73,8 @@ const update = async (req, res) => {
             nomecientifico,
             tempnome,
             descricao,
-            artigo
+            artigo,
+            imagem
         )
 
         res.send({ message: "Planta atualizada com sucesso!" })

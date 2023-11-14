@@ -12,10 +12,11 @@ const updateService = (
     nomecientifico,
     tempnome,
     descricao,
-    artigo
+    artigo,
+    imagem
 ) => Plantas.findOneAndUpdate (
     { nomecientifico: tempnome },
-    { nome, nomecientifico, descricao, artigo }
+    { nome, nomecientifico, descricao, artigo, imagem }
 )
 
 export { 
