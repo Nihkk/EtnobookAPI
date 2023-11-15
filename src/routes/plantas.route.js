@@ -6,7 +6,7 @@ const router = Router()
 
 router.post('/', create)
 router.get('/', findAll)
-router.get('/find', validPlanta, findByNome)
+router.post('/find', validPlanta, findByNome)
 router.patch('/:nomecientifico', confirmPlanta, update)
 
 export default router
