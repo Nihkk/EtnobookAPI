@@ -1,4 +1,4 @@
-import { createService, findAllService, updateService } from '../services/plantas.service.js'
+import { createService, findAllService, updateService, findByFilterService } from '../services/plantas.service.js'
 
 const create = async (req, res) => {
     try {
@@ -23,11 +23,11 @@ const create = async (req, res) => {
         res.status(201).send({
             message: "Planta registrada com sucesso",
             planta: {
-            nome,
-            nomecientifico,
-            descricao,
-            artigo,
-            imagem
+                nome,
+                nomecientifico,
+                descricao,
+                artigo,
+                imagem
             },
         })
     } catch (err) {
@@ -49,12 +49,28 @@ const findAll = async (req, res) => {
     }
 }
 
-const findByNome = async (req, res) => {
+const findByNome = (req, res) => {
     try {
-        const planta =  req.planta
+        const planta = req.planta
 
         res.send(planta)
     } catch (error) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+const findByFilter = async (req, res) => {
+    try {
+        const { nome } = req.body
+
+        if (!nome) {
+            return res.status(400).send({ message: "Informe um nome a ser filtrado" })
+        }
+
+        const plantasFiltradas = await findByFilterService(nome)
+
+        res.send(plantasFiltradas)
+    } catch (err) {
         res.status(500).send({ message: err.message })
     }
 }
@@ -83,4 +99,4 @@ const update = async (req, res) => {
     }
 }
 
-export { create, findAll, update, findByNome }
+export { create, findAll, update, findByNome, findByFilter }

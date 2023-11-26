@@ -7,6 +7,14 @@ const findAllService = () => Plantas.find()
 //Encontra uma planta pelo nome científico, se chama findByNome para que o nome não fique gigante
 const findByNomeService = (nomecientifico) => Plantas.findOne( { nomecientifico: nomecientifico } )
 
+const findByFilterService = (nome) => Plantas.find({
+    $or: [
+      { nome: { $regex: nome, $options: 'i' } }, // 'i' para ser case-insensitive
+      { nomecientifico: { $regex: nome, $options: 'i' } }
+    ]
+  }
+)
+
 const updateService = (
     nome,
     nomecientifico,
@@ -23,5 +31,6 @@ export {
     createService, 
     findAllService,
     findByNomeService,
-    updateService
+    updateService,
+    findByFilterService
 }
