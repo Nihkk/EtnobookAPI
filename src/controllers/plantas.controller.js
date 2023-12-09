@@ -54,7 +54,7 @@ const findByNome = (req, res) => {
         const planta = req.planta
 
         res.send(planta)
-    } catch (error) {
+    } catch (err) {
         res.status(500).send({ message: err.message })
     }
 }
