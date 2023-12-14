@@ -1,14 +1,14 @@
 import { Router } from 'express'
-import userController from '../controllers/user.controller.js'
+import { create, findAll, findById, update } from '../controllers/user.controller.js'
 import { validId, validUser } from "../middlewares/global.middlewares.js"
 import { authMiddleware } from '../middlewares/auth.middleware.js'
 
 
 const router = Router()
 
-router.post('/', userController.create)
-router.get('/', userController.findAll)
-router.get('/perfil', authMiddleware, validId, validUser, userController.findById)
-router.patch('/:id', validId, validUser, userController.update)
+router.post('/', create)
+router.get('/', findAll)
+router.get('/perfil', authMiddleware, validId, validUser, findById)
+router.patch('/:id', validId, validUser, update)
 
 export default router

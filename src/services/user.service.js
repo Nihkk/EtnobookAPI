@@ -21,7 +21,7 @@ const updateService = (
     { name, lastname, birthdate, gender, address, phonenumber, email, password }
 )
 
-export default {
+export {
     createService,
     findAllService,
     findByIdService,

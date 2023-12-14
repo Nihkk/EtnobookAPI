@@ -1,4 +1,4 @@
-import userService from '../services/user.service.js'
+import { findAllService,  createService, updateService } from '../services/user.service.js'
 
 const create = async (req, res) => {
     try {
@@ -13,7 +13,7 @@ const create = async (req, res) => {
             return res.status(400).send({ message: "A confirmação de senha está incorreta!" })
         }
 
-        const user = await userService.createService({ 
+        const user = await createService({ 
             name, 
             lastname, 
             birthdate, 
@@ -47,7 +47,7 @@ const create = async (req, res) => {
 
 const findAll = async (req, res) => {
     try {
-        const users = await userService.findAllService()
+        const users = await findAllService()
 
         if (users.length === 0) {
             return res.status(400).send({ message: "Não há usuarios cadastrados" })
@@ -81,7 +81,7 @@ const update = async (req, res) => {
 
         const user = req.user
 
-        await userService.updateService(
+        await updateService(
             id,
             name,
             lastname,
@@ -99,4 +99,4 @@ const update = async (req, res) => {
     }
 }
 
-export default { create, findAll, findById, update }
+export { create, findAll, findById, update }
